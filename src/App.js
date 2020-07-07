@@ -19,7 +19,7 @@ class App extends React.Component {
     this.handleDecimal = this.handleDecimal.bind(this);
   }
   
-  handleDigitClick() {
+  handleDigitClick(event) {
     if (this.state.heldValue == false && event.target.value == 0) {
       return
     } else if (this.state.heldValue == false) {
@@ -35,7 +35,7 @@ class App extends React.Component {
     }
   }
   
-  handleDecimal() {
+  handleDecimal(event) {
     if (this.state.isDecimal == false && this.state.heldValue == false) {
       this.setState({
         currentValue: (0 + event.target.value),
@@ -61,7 +61,7 @@ class App extends React.Component {
     })
   }
   
-  handleOperation() {
+  handleOperation(event) {
     if (this.state.operatorJustUsed === true && event.target.value !== "-") {
       if (this.state.operationArr[this.state.operationArr.length - 1] == "-") {
         this.setState({
