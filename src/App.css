@@ -75,7 +75,7 @@
 
 @media only screen and (max-width: 600px) {
   #root {
-    min-height: 450px;
+    min-height: 400px;
   }
   
   #calculator {
