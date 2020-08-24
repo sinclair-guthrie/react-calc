@@ -5,12 +5,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentValue: 0,
-      operationArr: [],
-      heldValue: false,
-      isDecimal: false,
-      wasJustEvaluated: false,
-      operatorJustUsed: false
+      currentValue: 0,   // Current number in display box - being prepared to be sent to operation array
+      operationArr: [],  // Array of stored numbers and operations - not yet evaluated. Displayed below current value
+      heldValue: false,  // Boolean for storing whether or not there's a value in currentValue being operated on - important for the decimal button to function properly.
+      isDecimal: false,  // Boolean for storing whether or not the current value is a decimal
+      wasJustEvaluated: false,  // Boolean for whether or not the value was just evaluated with "=" - important for holding over values to continue operations after using "="
+      operatorJustUsed: false   // Boolean for storing if an operator was just used - important to know if an operator input should override the last input or be added to operator array
     }
     this.handleDigitClick = this.handleDigitClick.bind(this);
     this.handleClear = this.handleClear.bind(this);
