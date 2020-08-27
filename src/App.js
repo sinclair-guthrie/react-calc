@@ -20,9 +20,9 @@ class App extends React.Component {
   }
   
   handleDigitClick(event) {
-    if (this.state.heldValue == false && event.target.value == 0) {
+    if (this.state.heldValue === false && event.target.value === 0) {
       return
-    } else if (this.state.heldValue == false) {
+    } else if (this.state.heldValue === false) {
       this.setState({
         currentValue: event.target.value,
         heldValue: true,
@@ -36,13 +36,13 @@ class App extends React.Component {
   }
   
   handleDecimal(event) {
-    if (this.state.isDecimal == false && this.state.heldValue == false) {
+    if (this.state.isDecimal === false && this.state.heldValue === false) {
       this.setState({
         currentValue: (0 + event.target.value),
         heldValue: true,
         isDecimal: true
       })
-    } else if (this.state.isDecimal == false) {
+    } else if (this.state.isDecimal === false) {
       this.setState({
         currentValue: this.state.currentValue + event.target.value,
         isDecimal: true
@@ -63,7 +63,7 @@ class App extends React.Component {
   
   handleOperation(event) {
     if (this.state.operatorJustUsed === true && event.target.value !== "-") {
-      if (this.state.operationArr[this.state.operationArr.length - 1] == "-") {
+      if (this.state.operationArr[this.state.operationArr.length - 1] === "-") {
         this.setState({
         operationArr: this.state.operationArr.slice(0, -2).concat(event.target.value),
         isDecimal: false,
@@ -78,11 +78,11 @@ class App extends React.Component {
       })
      }
     }
-    else if(this.state.operationArr[this.state.operationArr.length - 1] == "-" && event.target.value == "-") {
+    else if(this.state.operationArr[this.state.operationArr.length - 1] === "-" && event.target.value === "-") {
       return
     }
     
-    else if (this.state.wasJustEvaluated == true) {
+    else if (this.state.wasJustEvaluated === true) {
       this.setState({
         operationArr: [this.state.currentValue].concat(event.target.value),
         isDecimal: false,
@@ -90,7 +90,7 @@ class App extends React.Component {
         operatorJustUsed: true
       })
     }
-    else if (this.state.heldValue == false) {
+    else if (this.state.heldValue === false) {
       this.setState({
         operationArr: this.state.operationArr.concat(event.target.value),
         isDecimal: false,
@@ -107,7 +107,7 @@ class App extends React.Component {
   }
   
   handleEquals() {
-    if (this.state.heldValue == false) {
+    if (this.state.heldValue === false) {
       let result = eval(this.state.operationArr.slice(0, -1).join(" "));
       this.setState({
         operationArr: this.state.operationArr.slice(0, -1),
@@ -161,96 +161,67 @@ class App extends React.Component {
   }
 }
 
-class Digit extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  render() {
-    return (
-      <button 
-        class="btn btn-primary"
-        id={this.props.number}
-        onClick={this.props.digitClick}
-        value={this.props.digit}
-        >
-        {this.props.digit}
-      </button>
-      )
-  }
+const Digit = (props) => {
+  return (
+    <button 
+      class="btn btn-primary"
+      id={props.number}
+      onClick={props.digitClick}
+      value={props.digit}
+      >
+      {props.digit}
+    </button>
+  )
 }
 
-class Operator extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  render() {
-    return (
-      <button 
-        class="btn btn-primary"
-        id={this.props.type}
-        value={this.props.value}
-        onClick={this.props.handleOperation}
-        >
-        {this.props.sign}
-      </button>
-    )
-  }
+const Operator = (props) => {
+  return (
+    <button 
+      class="btn btn-primary"
+      id={props.type}
+      value={props.value}
+      onClick={props.handleOperation}
+      >
+      {props.sign}
+    </button>
+  )
 }
 
-class ClearButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
+const ClearButton = (props) => {
+  return (
     <button 
       class="btn btn-primary"
       id="clear"
-      onClick={this.props.clearClick}
+      onClick={props.clearClick}
       >
       AC
     </button>
   )
-  }
 }
 
-class EqualsButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  render() {
-   return (
+const EqualsButton = (props) => {
+  return (
     <button 
       class="btn btn-primary"
       id="equals"
-      onClick={this.props.handleEquals}
+      onClick={props.handleEquals}
       >
       =
     </button>
-   )
-  }
+  )
 }
 
-class Decimal extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  render() {
-    return (
+const Decimal = (props) => {
+  return (
     <button
       class="btn btn-primary"
       id="decimal"
-      onClick={this.props.handleDecimal}
-      value={this.props.value}
+      onClick={props.handleDecimal}
+      value={props.value}
       >
       .
     </button>
   )
-  }
 }
 
 
